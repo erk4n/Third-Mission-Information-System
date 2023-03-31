@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <script>
+        // functions that either open or close the modal with the given ID, by giving it the respective bulma attributes
+        function openModal(modalID) {
+            document.getElementById(modalID).classList.add('is-active');
+        }
+
+        function closeModal(modalID) {
+            document.getElementById(modalID).classList.remove('is-active');
+        }
+    </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/article.css') }}">
+    <title>Transferagentur | {{ article.Title }}</title>
+
+    <section class="section">
+        <b>Sie sind hier:</b>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/main">Startseite</a></li>
+                <li><a href="/main">Artikel</a></li>
+                <li class="is-active"><a href="#" aria-current="page">{{ article.Title }}</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section class="section has-background-light">
+        <div class="container">
+            <h1 class="title is-1">{{ article.Title }}</h1>
+            <div class="columns">
+                <div class="column is-four-fifths">
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+
+            <!--
+            Here the actual HTML for the article steps...
+            -->
+            <div class="container has-background-dark"
+                 
+                <h1 class="title">
+                    <span style="color: white;">
+                        {{ article.Articledetail }}</span>
+                </h1>
+
+            </div>
+
+            <h2 class="subtitle has-background-light"
+                style="
+                padding-bottom: 10px;
+                padding-top: 10px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;">
+                {{ article.Articledetail}}
+            </h2>
+        </div>
+    </section>
+
+    <a href="/main">
+        <button class="button is-link is-light">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+            <span>
+                Zurück zur Startseite
+                </span>
+        </button>
+    </a>
+
+{% endblock %}

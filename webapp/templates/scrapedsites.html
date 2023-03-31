@@ -1,0 +1,35 @@
+{% extends 'simple.html' %}
+{% block content %}
+<title>Scapred Seiten</title>
+
+<!-- Page Content -->
+<body>
+<h1 class="page-header">Die folgenden Seiten wurden gescannt:</h1>
+<div>
+
+
+{% for i in data %}
+{% for j in i["websites"] %}
+    <h3><li>{{j}}</h3>
+        {% endfor %}
+        {% endfor %}
+</body>
+
+<form action="/scraped" method=post>
+    <!-- <h4>Document ID: </h4> {{ form.id }} -->
+     <hr>
+     <br>
+       <strong>Geben Sie weitere Seiten zum scannen ein!</strong>: {{ form.correction }} 
+       <br>
+       <br>
+       {{ form.csrf_token }}
+       {{ form.submit }}
+       <!--<button type="button submit" class="btn btn-success" name="submit">Save Annotations</button></a>-->  
+       <a href="./scraped"><button type="button" class="btn btn-primary">Skip to Next Phrase</button></a>
+     </form>
+<!-- jQuery -->
+<script src='{{ url_for('static', filename="vendor/jquery/jquery.min.js") }}'></script>
+<!-- Bootstrap Core JavaScript -->
+<script src='{{ url_for('static', filename="vendor/bootstrap/js/bootstrap.min.js") }}'></script>
+
+{% endblock %}

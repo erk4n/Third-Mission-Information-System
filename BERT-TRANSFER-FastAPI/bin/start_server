@@ -1,0 +1,3 @@
+#!/bin/bash
+
+uvicorn transfer_analyzer.api:app

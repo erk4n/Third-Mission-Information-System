@@ -1,0 +1,111 @@
+{% extends 'simple.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Pie Chart bezüglich Transfer Aktivitäten</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in data1.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Transfer Aktivitäten Labels',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script>
+      google.charts.load('current', {packages: ['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Define the chart to be drawn.
+        var data = new google.visualization.arrayToDataTable([
+           {% for k, v in data2.items() %}
+              {% if v is string %}
+                ['{{ k }}', '{{ v }}'],
+              {% else %}
+                ['{{ k }}', {{ v }}],
+              {% endif %}
+           {% endfor %}
+        ]);
+
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.ColumnChart(document.getElementById('myPieChart'));
+        chart.draw(data, null);
+      }
+    </script>
+
+    <!-- Das zweite-->
+
+    <br>
+    <br>
+
+    <br>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Anzahl der Berichte');
+        data.addRows([
+
+        {% for k, v in data3.items() %}
+            
+                ['{{ k }}', '{{ v }}'],
+              {% else %}
+                ['{{ k }}', {{ v }}],
+              
+           {% endfor %}
+      
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {showRowNumber: true, width: '60%', height: '90%'});
+      }
+    </script>
+
+
+</head>
+<body>
+	<div style="margin: 10px 0 0 10px;width: 1000px">
+		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+	</div>
+
+  <!-- Identify where the chart should be drawn. -->
+  <div id="myPieChart"></div>
+</div>
+
+
+  <!-- Identify where the chart should be drawn. -->
+  <div style="margin: 100px 50px 50px 50px;width: 1000px">
+  <div id="table_div"></div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

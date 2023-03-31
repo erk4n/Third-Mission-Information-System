@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flashes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fix-sticky-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/burger_animation.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link href="{{ url_for('static', filename='fontawesome-free-5.15.2-web/css/all.css') }}" rel="stylesheet">
+    <script src={{ url_for('static', filename='js/search.js') }}></script>
+    <script src={{ url_for('static', filename='js/sidebar.js') }}></script> 
+</head>
+<body class="Site">
+
+<nav class="navbar is-spaced has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        <a class="navbar-item" href="/main">
+            <img src="{{ url_for('static', filename='img/uhh-logo.png') }}" style="max-height: 4em;">
+        </a>
+
+        <div id="nav-icon3" class="navbar-burger burger"
+             onclick="
+                document.querySelector('.navbar-menu').classList.toggle('is-active');
+                document.getElementById('nav-icon3').classList.toggle('open')"
+             style="
+                margin-left: auto;
+                margin-right: 20px;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/home">
+                Home
+            </a>
+
+            <a class="navbar-item" href="/about">
+                About
+            </a>
+            <a class="navbar-item" href="/activities/pie-chart">
+                Dashboard
+            </a>
+            <a class="navbar-item" href="/get">
+                Zuordnen
+            </a>
+            <a class="navbar-item" href="/scrape">
+                Herunterladen
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Mehr
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/login">
+                        Admin Login
+                    </a>
+                    <a class="navbar-item">
+                        Kontakt
+                    </a>
+                    <a class="navbar-item" href="/scraped">
+                        Webseiten
+                    </a>                    
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Einen Fehler melden
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input id="searchTerm" class="input" type="text" placeholder="Suchwort">
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-search"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-link" onclick="searchForTerm()" href="#">
+                        <strong>Suchen</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<section class="section Site-content">
+    {% block content %} {% endblock %}
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Transferagentur der Universität Hamburg</strong>.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'simple.html' %}
+{% block content %}
+<title>Validate Answers </title>
+<!--<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom Fonts -->
+<!--    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<!-- Page Content -->
+<body>
+<h1 class="page-header">Ordnen Sie den Text einer Kategorie zu!</h1>
+<div>
+ <!--  <strong style="background-color: red;">Transfer Aktivität</strong> -->
+ <strong>Transfer Aktivität</strong>
+  <h3>Title:</h3>
+  {{ title | safe }}
+  <br>
+  <h3>Subtitle:</h3> {{ subtitle }}
+  <br>
+  <h4>Article Detail: </h4> {{ articledetail }}
+  <br>
+  <form action="/get" method=post>
+ <!-- <h4>Document ID: </h4> {{ form.id }} -->
+  <hr>
+  <br>
+  <strong>Current User: </strong>{{ form.user }}
+  <br>
+ <!-- <strong>Satz </strong>: {{ form.textt(rows=10, cols=50) }}
+  <br>
+  -->
+ <!--   <strong>Satz</strong>: {{ form.text }} 
+    <br>
+  -->
+    <strong>Die KI schlägt vor</strong>: {{ form.prediction }} 
+    <br>
+    <!--{{ form.answers }}
+    -->
+    {% for subfield in form.answers %}
+    <tr>
+      <td>{{ subfield }}</td>
+      <td>{{ subfield.label }}</td>
+    </tr>
+    {% endfor %}
+    <br>
+    {{ prob }}
+    <br>
+    <!--<strong>Falls keines Übereinstimmt, dann geben Sie ihr eigenes an</strong>: {{ form.correction }} --> 
+    <br>
+    <br>
+    {{ form.csrf_token }}
+    {{ form.submit }}
+    <!--<button type="button submit" class="btn btn-success" name="submit">Save Annotations</button></a>-->  
+    <a href="./get"><button type="button" class="btn btn-primary">Skip to Next Phrase</button></a>
+    <H6 align="right">Dokumenten-ID {{form.id}} </H6>
+
+  </form>
+</body>
+<!-- jQuery -->
+<script src='{{ url_for('static', filename="vendor/jquery/jquery.min.js") }}'></script>
+<!-- Bootstrap Core JavaScript -->
+<script src='{{ url_for('static', filename="vendor/bootstrap/js/bootstrap.min.js") }}'></script>
+
+{% endblock %}

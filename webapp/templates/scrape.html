@@ -1,0 +1,12 @@
+{% extends "simple.html" %}
+{% block content %}
+
+<h1>Mit dem Folgenden Button können Sie ihre definierten Websieten durchsuchen und herunterladen. Viel Spaß dabei.</h1>
+
+<form action="/scrape" method=post>
+       <br>
+       {{ form.csrf_token }}
+       {{ form.submit }}
+
+    </form>
+{% endblock %}
