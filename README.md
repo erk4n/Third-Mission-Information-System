@@ -21,6 +21,7 @@ First, go to https://account.mongodb.com/account/login and create an mongoDB dat
 
 ## Machine Learning
 
+1. download model weights from https://drive.google.com/file/d/1--wlIk2ZkG719oWNuhQaRu1dkpUBTy9p/view?usp=sharing and move it to folder /BERT-TRANSFER-FastAPI/assets/
 1. cd into directory /BERT-TRANSFER-FastAPI
 2. enter uvicorn transfer_analyzer.api:app
 
